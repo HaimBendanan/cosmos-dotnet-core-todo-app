@@ -5,12 +5,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>My To-Do Items</h2>
+<h2>My vulnerable To-Do Items list</h2>
 
 <table class="table">
     <tr>
+         <th>
+            User name
+        </th>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            Task name
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Description)
@@ -21,9 +24,21 @@
         <th></th>
     </tr>
 
+@using (Html.BeginForm())
+{
+    <p>
+        Find by name: @Html.TextBox("name")  
+        <input type="submit" value="Search"  class="btn btn-default"/></p>
+}
+
+<p>Hint: Try to write ' OR '1%'='1 in the search box</p>
+
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.UserId)
+        </td>
+       <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
@@ -45,7 +60,7 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<p>
-    @Html.ActionLink("Open demo", "VulnerableList")
-    @* @Html.ActionLink("Open demo", "VulnerableList", new { userId="03d2b7d4-54ab-4281-bff3-0721d8f2b2b8' or '1'='1"}) *@
-</p>
+
+<div>
+    @Html.ActionLink("Back to home page", "Index")
+</div>

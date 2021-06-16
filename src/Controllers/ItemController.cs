@@ -7,6 +7,8 @@
 
     public class ItemController : Controller
     {
+        private const string demoUserId = "haimb@microsoft.com";
+
         private readonly ICosmosDbService _cosmosDbService;
         public ItemController(ICosmosDbService cosmosDbService)
         {
@@ -17,6 +19,13 @@
         public async Task<IActionResult> Index()
         {
             return View(await _cosmosDbService.GetItemsAsync("SELECT * FROM c"));
+        }
+
+        [ActionName("VulnerableList")]
+        public async Task<IActionResult> VulnerableList(string name)
+        {
+            var query = $"SELECT * FROM c WHERE c.userId='{demoUserId}' AND c.name LIKE '%{name}%'";
+            return View(await _cosmosDbService.GetItemsAsync(query));
         }
 
         [ActionName("Create")]
@@ -33,6 +42,7 @@
             if (ModelState.IsValid)
             {
                 item.Id = Guid.NewGuid().ToString();
+                item.UserId = demoUserId;
                 await _cosmosDbService.AddItemAsync(item);
                 return RedirectToAction("Index");
             }
