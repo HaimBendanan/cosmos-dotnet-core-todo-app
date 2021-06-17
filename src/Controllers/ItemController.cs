@@ -1,9 +1,11 @@
 ﻿namespace todo.Controllers
 {
     using System;
+    using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
     using todo.Models;
+
 
     public class ItemController : Controller
     {
@@ -24,6 +26,14 @@
         [ActionName("VulnerableList")]
         public async Task<IActionResult> VulnerableList(string name)
         {
+            var query = $"SELECT * FROM c WHERE c.userId='{demoUserId}' AND c.name LIKE '%{name}%'";
+            return View(await _cosmosDbService.GetItemsAsync(query));
+        }
+
+        [ActionName("GoodList")]
+        public async Task<IActionResult> GoodList(string name)
+        {
+            name = Regex.Replace(name ?? "", "[^A-Za-z0-9 -]", "");
             var query = $"SELECT * FROM c WHERE c.userId='{demoUserId}' AND c.name LIKE '%{name}%'";
             return View(await _cosmosDbService.GetItemsAsync(query));
         }

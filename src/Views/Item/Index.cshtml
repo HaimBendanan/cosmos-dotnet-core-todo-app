@@ -5,47 +5,31 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>My To-Do Items</h2>
+<h1>SQL injection demo</h1>
+<p>This is a demo to-do app, where users can manage their to-do items.</p>
+<p>Users have access to their personal to-dos.</p>
+<p>The app is running on AspNET MVC core, the backend is using Cosmos DB to store data.</p>
+<p>By using a SQL injection vulnerability, we are able to read all the to-do items in the database, including items that belong to other users.</p>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Completed)
-        </th>
-        <th></th>
-    </tr>
+<div>
+   <div style="width:45%;display:inline;">
+    @Html.ActionLink("Good list", "GoodList", new {}, new  {@class = "btn btn-default" })
+   </div>
+   <div style="width:45%;display:inline;">
+    @Html.ActionLink("Vulnerable list", "VulnerableList", new {}, new  {@class = "btn btn-default" })
+   </div>
+</div>
+@* @await Component.InvokeAsync("GoodList", new {}) *@
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Completed)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
 
-</table>
+@* <p>
+     @{ Html.RenderAction("~/Views/Item/GoodList.cshtml", "GoodList"); }
+</p> *@
+
+@* <p>
+     @{ Html.RenderAction("VulnerableList", "Item"); }
+</p> 
 
 <p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<p>
-    @Html.ActionLink("Open demo", "VulnerableList")
-    @* @Html.ActionLink("Open demo", "VulnerableList", new { userId="03d2b7d4-54ab-4281-bff3-0721d8f2b2b8' or '1'='1"}) *@
-</p>
+     @{ Html.RenderPartial("~/Views/Item/VulnerableList.cshtml", new List<todo.Models.Item>()); }
+</p>  *@
