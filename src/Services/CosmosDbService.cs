@@ -46,7 +46,12 @@
 
         public async Task<IEnumerable<Item>> GetItemsAsync(string queryString)
         {
-            var query = this._container.GetItemQueryIterator<Item>(new QueryDefinition(queryString));
+            return await GetItemsAsync(new QueryDefinition(queryString));
+        }
+
+        public async Task<IEnumerable<Item>> GetItemsAsync(QueryDefinition queryDefinition)
+        {
+            var query = this._container.GetItemQueryIterator<Item>(queryDefinition);
             List<Item> results = new List<Item>();
             while (query.HasMoreResults)
             {

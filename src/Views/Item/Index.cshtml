@@ -5,15 +5,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>SQL injection demo</h1>
+<h1>💉 SQL injection demo</h1>
 <p>This is a demo to-do app, where users can manage their to-do items.</p>
 <p>Users have access to their personal to-dos.</p>
 <p>The app is running on AspNET MVC core, the backend is using Cosmos DB to store data.</p>
-<p>By using a SQL injection vulnerability, we are able to read all the to-do items in the database, including items that belong to other users.</p>
+<p>By using a SQL injection vulnerability in the backend, we are able to read all the to-do items in the Cosmos DB collection, including items that belong to other users.</p>
 
 <div>
    <div style="width:45%;display:inline;">
-    @Html.ActionLink("Good list", "GoodList", new {}, new  {@class = "btn btn-default" })
+    @Html.ActionLink("Hardened list", "GoodList", new {}, new  {@class = "btn btn-default" })
    </div>
    <div style="width:45%;display:inline;">
     @Html.ActionLink("Vulnerable list", "VulnerableList", new {}, new  {@class = "btn btn-default" })

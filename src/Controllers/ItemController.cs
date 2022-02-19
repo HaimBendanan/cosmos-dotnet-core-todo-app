@@ -5,11 +5,11 @@
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
     using todo.Models;
-
+    using Microsoft.Azure.Cosmos;
 
     public class ItemController : Controller
     {
-        private const string demoUserId = "haimb@microsoft.com";
+        private const string demoUserId = "john@contoso.com";
 
         private readonly ICosmosDbService _cosmosDbService;
         public ItemController(ICosmosDbService cosmosDbService)
@@ -33,9 +33,10 @@
         [ActionName("GoodList")]
         public async Task<IActionResult> GoodList(string name)
         {
-            name = Regex.Replace(name ?? "", "[^A-Za-z0-9 -]", "");
-            var query = $"SELECT * FROM c WHERE c.userId='{demoUserId}' AND c.name LIKE '%{name}%'";
-            return View(await _cosmosDbService.GetItemsAsync(query));
+            var queryDefinition = new QueryDefinition($"SELECT * FROM c WHERE c.userId = @userId AND c.name LIKE @taskNameSearchPattern")
+                .WithParameter("@userId", demoUserId)
+                .WithParameter("@taskNameSearchPattern", $"%{name}%");
+            return View(await _cosmosDbService.GetItemsAsync(queryDefinition));
         }
 
         [ActionName("Create")]
