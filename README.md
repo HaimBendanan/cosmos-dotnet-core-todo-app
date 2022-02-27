@@ -85,7 +85,7 @@ For additional ways to deploy this web application to Azure, please refer to the
 
 6. After a short time, Visual Studio Code will complete the deployment.
 
-7. After deployment, go you your Web App in the Azure Portal and make sure to [add the App Settings](https://docs.microsoft.com/azure/app-service/configure-common#configure-app-settings):
+7. [NOT NEEDED ANYMORE] After deployment, go you your Web App in the Azure Portal and make sure to [add the App Settings](https://docs.microsoft.com/azure/app-service/configure-common#configure-app-settings):
     1. `CosmosDb:Account`: The endpoint for the Azure Cosmos account.
     1. `CosmosDb:Key`: The key for the Azure Cosmos account.
     1. `CosmosDb:DatabaseName`: The name of the Azure Cosmos database to use.
