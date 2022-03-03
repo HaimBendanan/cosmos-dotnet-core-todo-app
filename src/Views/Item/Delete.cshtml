@@ -1,4 +1,4 @@
-﻿@model todo.Models.Item
+﻿@model todo.Models.Prescription
 
 @{
     ViewBag.Title = "Delete";
@@ -20,19 +20,19 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.DisplayNameFor(model => model.HowToUse)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Description)
+            @Html.DisplayFor(model => model.HowToUse)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Completed)
+            @Html.DisplayNameFor(model => model.IsPurchased)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Completed)
+            @Html.DisplayFor(model => model.IsPurchased)
         </dd>
     </dl>
 

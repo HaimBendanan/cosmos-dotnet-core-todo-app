@@ -1,22 +1,24 @@
-﻿@model IEnumerable<todo.Models.Item>
+﻿@model IEnumerable<todo.Models.Prescription>
 
 @{
-    ViewBag.Title = "List of To-Do Items";
+    ViewBag.Title = "Contoso medical - My prescriptions";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>💉 SQL injection demo</h1>
-<p>This is a demo to-do app, where users can manage their to-do items.</p>
-<p>Users have access to their personal to-dos.</p>
-<p>The app is running on AspNET MVC core, the backend is using Cosmos DB to store data.</p>
-<p>By using a SQL injection vulnerability in the backend, we are able to read all the to-do items in the Cosmos DB collection, including items that belong to other users.</p>
+<p>This is a demo application, with the purpose to demonstrate SQL injection vulnerability on Azure Cosmos DB.</p>
+<p>The application let users view and purchase medical prescriptions.</p>
+<p>Users have access to prescriptions given to them or to their family members.</p>
+<p></p>
+<p>The app is running on AspNET MVC core, the backend is using Azure Cosmos DB to store data.</p>
+<p>By using a SQL injection vulnerability in the backend, we are able to read all the prescriptions in the database, including prescriptions that belong to other users.</p>
 
 <div>
    <div style="width:45%;display:inline;">
-    @Html.ActionLink("Hardened list", "GoodList", new {}, new  {@class = "btn btn-default" })
+    @Html.ActionLink("👍 Hardened application", "GoodList", new {}, new  {@class = "btn btn-default" })
    </div>
    <div style="width:45%;display:inline;">
-    @Html.ActionLink("Vulnerable list", "VulnerableList", new {}, new  {@class = "btn btn-default" })
+    @Html.ActionLink("💉 Vulnerable application", "VulnerableList", new {}, new  {@class = "btn btn-default" })
    </div>
 </div>
 @* @await Component.InvokeAsync("GoodList", new {}) *@
@@ -31,5 +33,5 @@
 </p> 
 
 <p>
-     @{ Html.RenderPartial("~/Views/Item/VulnerableList.cshtml", new List<todo.Models.Item>()); }
+     @{ Html.RenderPartial("~/Views/Item/VulnerableList.cshtml", new List<todo.Models.Prescription>()); }
 </p>  *@

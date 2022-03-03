@@ -9,7 +9,7 @@
 
     public class ItemController : Controller
     {
-        private const string demoUserId = "john@contoso.com";
+        private const string demoUserId = "john.shannon@dummy.com";
 
         private readonly ICosmosDbService _cosmosDbService;
         public ItemController(ICosmosDbService cosmosDbService)
@@ -48,7 +48,7 @@
         [HttpPost]
         [ActionName("Create")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> CreateAsync([Bind("Id,Name,Description,Completed")] Item item)
+        public async Task<ActionResult> CreateAsync([Bind("Id,Name,HowToUse,IsPurchased")] Prescription item)
         {
             if (ModelState.IsValid)
             {
@@ -64,7 +64,7 @@
         [HttpPost]
         [ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EditAsync([Bind("Id,Name,Description,Completed")] Item item)
+        public async Task<ActionResult> EditAsync([Bind("Id,Name,HowToUse,IsPurchased")] Prescription item)
         {
             if (ModelState.IsValid)
             {
@@ -83,7 +83,7 @@
                 return BadRequest();
             }
 
-            Item item = await _cosmosDbService.GetItemAsync(id);
+            Prescription item = await _cosmosDbService.GetItemAsync(id);
             if (item == null)
             {
                 return NotFound();
@@ -100,7 +100,7 @@
                 return BadRequest();
             }
 
-            Item item = await _cosmosDbService.GetItemAsync(id);
+            Prescription item = await _cosmosDbService.GetItemAsync(id);
             if (item == null)
             {
                 return NotFound();

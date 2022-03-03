@@ -20,21 +20,21 @@
             this._container = dbClient.GetContainer(databaseName, containerName);
         }
         
-        public async Task AddItemAsync(Item item)
+        public async Task AddItemAsync(Prescription item)
         {
-            await this._container.CreateItemAsync<Item>(item, new PartitionKey(item.Id));
+            await this._container.CreateItemAsync<Prescription>(item, new PartitionKey(item.Id));
         }
 
         public async Task DeleteItemAsync(string id)
         {
-            await this._container.DeleteItemAsync<Item>(id, new PartitionKey(id));
+            await this._container.DeleteItemAsync<Prescription>(id, new PartitionKey(id));
         }
 
-        public async Task<Item> GetItemAsync(string id)
+        public async Task<Prescription> GetItemAsync(string id)
         {
             try
             {
-                ItemResponse<Item> response = await this._container.ReadItemAsync<Item>(id, new PartitionKey(id));
+                ItemResponse<Prescription> response = await this._container.ReadItemAsync<Prescription>(id, new PartitionKey(id));
                 return response.Resource;
             }
             catch(CosmosException ex) when (ex.StatusCode == System.Net.HttpStatusCode.NotFound)
@@ -44,15 +44,15 @@
 
         }
 
-        public async Task<IEnumerable<Item>> GetItemsAsync(string queryString)
+        public async Task<IEnumerable<Prescription>> GetItemsAsync(string queryString)
         {
             return await GetItemsAsync(new QueryDefinition(queryString));
         }
 
-        public async Task<IEnumerable<Item>> GetItemsAsync(QueryDefinition queryDefinition)
+        public async Task<IEnumerable<Prescription>> GetItemsAsync(QueryDefinition queryDefinition)
         {
-            var query = this._container.GetItemQueryIterator<Item>(queryDefinition);
-            List<Item> results = new List<Item>();
+            var query = this._container.GetItemQueryIterator<Prescription>(queryDefinition);
+            List<Prescription> results = new List<Prescription>();
             while (query.HasMoreResults)
             {
                 var response = await query.ReadNextAsync();
@@ -63,9 +63,9 @@
             return results;
         }
 
-        public async Task UpdateItemAsync(string id, Item item)
+        public async Task UpdateItemAsync(string id, Prescription item)
         {
-            await this._container.UpsertItemAsync<Item>(item, new PartitionKey(id));
+            await this._container.UpsertItemAsync<Prescription>(item, new PartitionKey(id));
         }
     }
 }

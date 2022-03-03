@@ -1,4 +1,4 @@
-﻿@model todo.Models.Item
+﻿@model todo.Models.Prescription
 
 @{
     ViewBag.Title = "Create";
@@ -24,19 +24,19 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.HowToUse, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.HowToUse, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.HowToUse, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Completed, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.IsPurchased, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.EditorFor(model => model.Completed)
-                    @Html.ValidationMessageFor(model => model.Completed, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.IsPurchased)
+                    @Html.ValidationMessageFor(model => model.IsPurchased, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>

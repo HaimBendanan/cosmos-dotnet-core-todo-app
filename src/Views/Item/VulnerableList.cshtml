@@ -1,16 +1,21 @@
-﻿@model IEnumerable<todo.Models.Item>
+﻿@model IEnumerable<todo.Models.Prescription>
 
-<h2>💀 My vulnerable To-Do list</h2>
+<div align="left">
+    <p style="font-size:20px;">Welcome back, <b>John Shannon</b>!</p>
+</div>
+<p>&nbsp;</p>
+
+<h2>💊 My prescriptions</h2>
 
 @using (Html.BeginForm())
 {
     <p>
-        Find by name: @Html.TextBox("name")  
+        Find by prescription name: @Html.TextBox("name")
         <input type="submit" value="Search"  class="btn btn-default"/>
     </p>
 }
 
-<p>Hint:  ' OR '1'='1'--</p>
+<p style="color:white">Hint:  ' OR '1'='1'--</p>
 
 <p>
      @{ Html.RenderPartial("~/Views/Item/Table.cshtml"); }
