@@ -17,12 +17,6 @@
             _cosmosDbService = cosmosDbService;
         }
 
-        [ActionName("Index")]
-        public async Task<IActionResult> Index()
-        {
-            return View(await _cosmosDbService.GetItemsAsync("SELECT * FROM c"));
-        }
-
         [ActionName("VulnerableList")]
         public async Task<IActionResult> VulnerableList(string name)
         {
